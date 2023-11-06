@@ -19,9 +19,13 @@ class BaseModel:
 
     def to_dict(self):
         "Returns a dictionary representation of the class"
-        return self.__dict__
+        dict_objct = self.__dict__.copy()
+        dict_objct['__class__'] = self.__class__.__name__
+        dict_objct['created_at'] = self.created_at.isoformat()
+        dict_objct['updated_at'] = self.updated_at.isoformat()
+        return dict_objct
     
         
     def __str__(self):
         "should print: [<class name>] (<self.id>) <self.__dict__>"
-        return "[{}] ({}) <{}>".format(self.__class__.__name__, self.id, self.__dict__)
+        return "[{}] ({}) <{}>".format(self.__class__.__name__, self.id, self.to_dict())

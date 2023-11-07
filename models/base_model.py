@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """ This models contians one class,
 BaseModel that defines all common attributes/methods for other classes
 """

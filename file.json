@@ -1,0 +1,1 @@
+[BaseModel] (8ea99c71-f860-4b1c-84d1-56ded25605d9) {'id': '8ea99c71-f860-4b1c-84d1-56ded25605d9', 'created_at': datetime.datetime(2023, 11, 7, 10, 37, 40, 33663), 'updated_at': datetime.datetime(2023, 11, 7, 10, 37, 40, 33673), 'name': 'My_First_Model', 'my_number': 89}

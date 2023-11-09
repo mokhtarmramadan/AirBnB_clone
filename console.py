@@ -162,8 +162,5 @@ class MyConsole(cmd.Cmd):
             return False
         if len(input_list
 
-<<<<<<< HEAD
-if __name__ == '__main__':
-    HBNBCommand().cmdloop()
-=======
->>>>>>> 4189381413ffb2171ffcbb9fbec7a3af7606f71f
+                if __name__ == '__main__':
+                HBNBCommand().cmdloop()

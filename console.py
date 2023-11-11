@@ -3,14 +3,15 @@
 import cmd
 import re
 from shlex import split
-from mymodels import storage
-from mymodels.mymodel import MyBaseModel
-from mymodels.mymodel_user import MyUser
-from mymodels.mymodel_state import MyState
-from mymodels.mymodel_city import MyCity
-from mymodels.mymodel_place import MyPlace
-from mymodels.mymodel_amenity import MyAmenity
-from mymodels.mymodel_review import MyReview
+from models import storage
+from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.place import Place
+from models.amenity import Amenity
+from models.review import Review
+
 
 def parse(input_string):
     "Parsing input"
@@ -30,10 +31,11 @@ def parse(input_string):
         ret_list.append(curly_braces.group())
         return ret_list
 
-class MyConsole(cmd.Cmd):
+
+class HBNBCommand(cmd.Cmd):
     """Defines the MyConsole command"""
 
-    prompt = "(myconsole) "
+    prompt = "(hbnb) "
     __myclasses = {
         "MyBaseModel",
         "MyUser",
@@ -160,5 +162,26 @@ class MyConsole(cmd.Cmd):
         if "{}.{}".format(input_list[0], input_list[1]) not in obj_dict.keys():
             print("** no instance found **")
             return False
-        if len(input_list
+
+        if len(input_list) == 2:
+            print("** attribute name missing **")
+            return False
+        if len(input_list) == 3:
+            print("** value missing **")
+            return False
+
+        obj_key = "{}.{}".format(input_list[0], input_list[1])
+        obj = obj_dict[obj_key]
+
+        if input_list[2] in obj.__class__.__dict__.keys():
+            val_type = type(obj.__class__.__dict__[input_list[2]])
+            obj.__dict__[input_list[2]] = val_type(input_list[3])
+        else:
+            obj.__dict__[input_list[2]] = input_list[3]
+
+        storage.save()
+
+
+if __name__ == "__main__":
+    HBNBCommand().cmdloop()
 

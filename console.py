@@ -37,13 +37,13 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = "(hbnb) "
     __myclasses = {
-        "MyBaseModel",
-        "MyUser",
-        "MyState",
-        "MyCity",
-        "MyPlace",
-        "MyAmenity",
-        "MyReview"
+        "BaseModel",
+        "User",
+        "State",
+        "City",
+        "Place",
+        "Amenity",
+        "Review"
     }
 
     def emptyline(self):
@@ -85,7 +85,7 @@ class HBNBCommand(cmd.Cmd):
         input_list = parse(input_string)
         if len(input_list) == 0:
             print("** class name missing **")
-        elif input_list[0] not in MyConsole.__myclasses:
+        elif input_list[0] not in HBNBCommand.__myclasses:
             print("** class doesn't exist **")
         else:
             print(eval(input_list[0])().id)
@@ -97,7 +97,7 @@ class HBNBCommand(cmd.Cmd):
         obj_dict = storage.all()
         if len(input_list) == 0:
             print("** class name missing **")
-        elif input_list[0] not in MyConsole.__myclasses:
+        elif input_list[0] not in HBNBCommand.__myclasses:
             print("** class doesn't exist **")
         elif len(input_list) == 1:
             print("** instance id missing **")
@@ -112,7 +112,7 @@ class HBNBCommand(cmd.Cmd):
         obj_dict = storage.all()
         if len(input_list) == 0:
             print("** class name missing **")
-        elif input_list[0] not in MyConsole.__myclasses:
+        elif input_list[0] not in HBNBCommand.__myclasses:
             print("** class doesn't exist **")
         elif len(input_list) == 1:
             print("** instance id missing **")
@@ -125,7 +125,7 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, input_string):
         """Usage: all or all <class> or <class>.all()"""
         input_list = parse(input_string)
-        if len(input_list) > 0 and input_list[0] not in MyConsole.__myclasses:
+        if len(input_list) > 0 and input_list[0] not in HBNBCommand.__myclasses:
             print("** class doesn't exist **")
         else:
             obj_list = []
@@ -153,7 +153,7 @@ class HBNBCommand(cmd.Cmd):
         if len(input_list) == 0:
             print("** class name missing **")
             return False
-        if input_list[0] not in MyConsole.__myclasses:
+        if input_list[0] not in HBNBCommand.__myclasses:
             print("** class doesn't exist **")
             return False
         if len(input_list) == 1:
